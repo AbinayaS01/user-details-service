@@ -15,19 +15,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/api/userdetails")
+@RequestMapping("/api")
 public class UserDetailsController {
 
     @Autowired
     private UserDetailsService userService;
 
-    @GetMapping("/{uid}")
+
+    @GetMapping("/userdetails/{uid}")
     public ResponseEntity<UserDetails> getUserDetailsById(@PathVariable("uid") Long id)
     {
         return new ResponseEntity<UserDetails>(userService.getUserDetails(id), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/userdetails")
     public ResponseEntity<UserDetails> addUserDetails(@RequestBody UserDetails newUserDetails) {
         return new ResponseEntity<>(userService.addUserDetails(newUserDetails),HttpStatus.OK);
     }
